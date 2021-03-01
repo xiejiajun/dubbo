@@ -20,6 +20,7 @@ import org.apache.dubbo.common.extension.SPI;
 
 /**
  * Compiler. (SPI, Singleton, ThreadSafe)
+ * TODO 动态代码编译接口
  */
 @SPI("javassist")
 public interface Compiler {

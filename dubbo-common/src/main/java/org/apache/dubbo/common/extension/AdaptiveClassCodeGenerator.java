@@ -31,6 +31,7 @@ import java.util.stream.IntStream;
 
 /**
  * Code generator for Adaptive class
+ * 用于生成自适应接口class(用户定义的要使用Dubbo SPI机制动态扩展的接口)的接口方法代码
  */
 public class AdaptiveClassCodeGenerator {
 
