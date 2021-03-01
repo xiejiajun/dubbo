@@ -31,7 +31,12 @@ import java.util.stream.IntStream;
 
 /**
  * Code generator for Adaptive class
- * 用于生成自适应接口class(用户定义的要使用Dubbo SPI机制动态扩展的接口)的接口方法代码
+ * 在 Dubbo 中，很多拓展都是通过 SPI 机制进行加载的，比如 Protocol、Cluster、LoadBalance 等。
+ * 有时，有些拓展并不想在框架启动阶段被加载，而是希望在拓展方法被调用时，根据运行时参数进行加载。
+ * 这听起来有些矛盾。拓展未被加载，那么拓展方法就无法被调用（静态方法除外）。拓展方法未被调用，拓展就无法被加载。
+ * 对于这个矛盾的问题，Dubbo 通过自适应拓展机制很好的解决了。
+ * 自适应拓展机制的实现逻辑比较复杂，首先 Dubbo 会为拓展接口生成具有代理功能的代码。
+ * 然后通过 javassist 或 jdk 编译这段代码，得到 Class 类。最后再通过反射创建代理类，整个过程比较复杂。
  */
 public class AdaptiveClassCodeGenerator {
 
