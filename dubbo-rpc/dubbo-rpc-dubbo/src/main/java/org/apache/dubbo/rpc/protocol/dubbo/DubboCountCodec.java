@@ -47,6 +47,7 @@ public final class DubboCountCodec implements Codec2 {
         do {
             Object obj = codec.decode(channel, buffer);
             if (Codec2.DecodeResult.NEED_MORE_INPUT == obj) {
+                // TODO 数据还没接收完整，重置读取索引，下次重读
                 buffer.readerIndex(save);
                 break;
             } else {

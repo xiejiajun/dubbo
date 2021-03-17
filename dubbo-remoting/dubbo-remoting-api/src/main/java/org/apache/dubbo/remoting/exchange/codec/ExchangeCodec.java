@@ -109,11 +109,13 @@ public class ExchangeCodec extends TelnetCodec {
         }
 
         // get data length.
+        // TODO 从消息头(前16位，少于16位则全部取)里面解析数据长度
         int len = Bytes.bytes2int(header, 12);
         checkPayload(channel, len);
 
         int tt = len + HEADER_LENGTH;
         if (readable < tt) {
+            // TODO 如果消息体里面可读的数据(tcp pkg)长度小于header解析出来的长度 + header信息长度(最大16位), 则说明数据有丢失
             return DecodeResult.NEED_MORE_INPUT;
         }
 

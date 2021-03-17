@@ -84,6 +84,7 @@ final public class NettyCodecAdapter {
                 int saveReaderIndex = message.readerIndex();
                 Object msg = codec.decode(channel, message);
                 if (msg == Codec2.DecodeResult.NEED_MORE_INPUT) {
+                    // TODO 数据还没接收完整，重置读取索引，下次重读
                     message.readerIndex(saveReaderIndex);
                     break;
                 } else {
